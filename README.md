@@ -13,8 +13,13 @@ https://developer.android.com/guide/topics/resources/runtime-changes.html
 
 ### Activity
 
+Supports only `android.support.v4.app.FragmentActivity` or its subclasses.
+
 ```java
-public class ExampleActivity extends Activity {
+import net.divlight.retainer.Retainer;
+import net.divlight.retainer.annotation.Retain;
+
+public class ExampleActivity extends AppCompatActivity {
     // This field will be automatically preserved by Retainer.
     @Retain
     int retainedValue;
@@ -35,9 +40,12 @@ public class ExampleActivity extends Activity {
 
 ### Fragment
 
-At the moment, Retainer supports only `android.support.v4.app.Fragment` or its subclasses.
+Supports only `android.support.v4.app.Fragment` or its subclasses.
 
 ```java
+import net.divlight.retainer.Retainer;
+import net.divlight.retainer.annotation.Retain;
+
 public class ExampleFragment extends Fragment {
     // This field will be automatically preserved by Retainer.
     @Retain
@@ -59,6 +67,28 @@ public class ExampleFragment extends Fragment {
 
 **IMPORTANT**: You should never add `@Retain` to an object that is tied to the activity context, such as a Drawable, an Adapter, or a View.
 If you do, it will cause serious memory leaks.
+
+## Download
+
+### Gradle
+
+Add it in your root build.gradle at the end of repositories:
+
+```groovy
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+Add the dependency in your module's build.gradle:
+
+```groovy
+compile 'com.github.nakamuuu.retainer:library:{{latest_version}}'
+annotationProcessor 'com.github.nakamuuu.retainer:processor:{{latest_version}}'
+```
 
 ## Requirements
 
