@@ -3,9 +3,9 @@
 Retainer is an Android library that helps you retain objects in an Activity / Fragment during configuration changes.
 
 It auto-generates a Fragment internally by using annotation processing.
-A generated Fragment is called `setRetainInstance(true);` in its `onCreate()` to preserve stateful objects.
+`setRetainInstance(true)` is called for the generated Fragment in its `onCreate()` so that the Fragment preserves stateful objects for the Activity.
 
-If you need more information about the handling of configuration changes, please check the following document.
+If you need more information about the handling of configuration changes, check the following document.
 
 https://developer.android.com/guide/topics/resources/runtime-changes.html
 
