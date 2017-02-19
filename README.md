@@ -1,5 +1,7 @@
 # Retainer
 
+[![Release](https://jitpack.io/v/nakamuuu/retainer.svg)](https://jitpack.io/#nakamuuu/retainer)
+
 Retainer is an Android library that helps you retain objects in an Activity / Fragment during configuration changes.
 
 It auto-generates container objects by using annotation processing, and this objects will be internally preserved in a Fragment.
