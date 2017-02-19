@@ -21,20 +21,15 @@ public class Retainer {
 
     @SuppressWarnings("unchecked")
     private static <T> void onCreate(FragmentManager fragmentManager, T target) {
-        final String tag = Object.getTag((target.getClass()));
+        final String tag = RetainFragment.getTag(target.getClass());
         final Fragment fragment = fragmentManager.findFragmentByTag(tag);
         if (fragment != null) {
-            ((Object<T>) fragment).restore(target);
-        } else {
-            try {
-                final String packageName = target.getClass().getPackage().getName();
-                final String className = getObjectClassName(target.getClass());
-                final Class<?> clazz = Class.forName(packageName + "." + className);
-                final Object<T> object = (Object<T>) clazz.newInstance();
-                fragmentManager.beginTransaction().add(object, tag).commit();
-            } catch (Exception e) {
-                Log.w(TAG, "Failed to commit the fragment for preserving instance states.");
+            final Object<T> object = ((RetainFragment<T>) fragment).getObject();
+            if (object != null) {
+                object.restore(target);
             }
+        } else {
+            fragmentManager.beginTransaction().add(new RetainFragment<T>(), tag).commit();
         }
     }
 
@@ -48,13 +43,23 @@ public class Retainer {
 
     @SuppressWarnings("unchecked")
     private static <T> void onDestroy(FragmentManager fragmentManager, T target) {
-        final String tag = Object.getTag((target.getClass()));
+        final String tag = RetainFragment.getTag(target.getClass());
         final Fragment fragment = fragmentManager.findFragmentByTag(tag);
-        if (fragment != null) {
-            ((Object<T>) fragment).save(target);
-        } else {
+        if (fragment == null) {
             Log.w(TAG, "Could not find the fragment for preserving instance states."
-                    + " Please make sure not to forget calling Retainer#onCreate.");
+                    + " Make sure not to forget calling Retainer#onCreate.");
+            return;
+        }
+
+        try {
+            final String packageName = target.getClass().getPackage().getName();
+            final String className = getObjectClassName(target.getClass());
+            final Class<?> clazz = Class.forName(packageName + "." + className);
+            final Object<T> object = (Object<T>) clazz.newInstance();
+            object.save(target);
+            ((RetainFragment<T>) fragment).setObject(object);
+        } catch (Exception e) {
+            Log.w(TAG, "Failed to create a object instance for preserving instance states.");
         }
     }
 

@@ -11,6 +11,7 @@ import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import com.squareup.javapoet.TypeVariableName;
 
+import net.divlight.retainer.Object;
 import net.divlight.retainer.ObjectClassNameBuilder;
 import net.divlight.retainer.annotation.Retain;
 
@@ -38,7 +39,6 @@ import javax.tools.Diagnostic;
 @SuppressWarnings("unused")
 @AutoService(Processor.class)
 public class RetainProcessor extends AbstractProcessor {
-
     private Elements elementUtils;
     private Messager messager;
     private Filer filer;
@@ -98,8 +98,8 @@ public class RetainProcessor extends AbstractProcessor {
             final TypeSpec.Builder builder = TypeSpec.classBuilder(objectClassName)
                     .addTypeVariable(TypeVariableName.get("T", ClassName.get(classElement)))
                     .addModifiers(Modifier.PUBLIC)
-                    .superclass(ParameterizedTypeName.get(
-                            ClassName.get("net.divlight.retainer", "Object"),
+                    .addSuperinterface(ParameterizedTypeName.get(
+                            ClassName.get(Object.class),
                             TypeVariableName.get("T")))
                     .addMethod(generateSaveMethodSpec(fieldElements))
                     .addMethod(generateRestoreMethodSpec(fieldElements));
@@ -132,7 +132,7 @@ public class RetainProcessor extends AbstractProcessor {
         return (TypeElement) element;
     }
 
-    private static String getObjectClassName(Element classElement) {
+    private String getObjectClassName(Element classElement) {
         final String targetClassName = classElement.getSimpleName().toString();
         final ObjectClassNameBuilder builder = new ObjectClassNameBuilder(targetClassName);
         Element element = classElement.getEnclosingElement();

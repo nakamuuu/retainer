@@ -4,10 +4,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
-public abstract class Object<T> extends Fragment {
+public class RetainFragment<T> extends Fragment {
     public static String getTag(Class<?> targetClass) {
-        return targetClass.getName().toUpperCase().replaceAll("\\.", "_") + "_OBJECT";
+        return targetClass.getName().toUpperCase().replaceAll("\\.", "_") + "_RETAINER";
     }
+
+    @Nullable
+    private Object<T> object;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -15,7 +18,12 @@ public abstract class Object<T> extends Fragment {
         setRetainInstance(true);
     }
 
-    public abstract void save(T target);
+    @Nullable
+    public Object<T> getObject() {
+        return object;
+    }
 
-    public abstract void restore(T target);
+    public void setObject(@Nullable Object<T> object) {
+        this.object = object;
+    }
 }
