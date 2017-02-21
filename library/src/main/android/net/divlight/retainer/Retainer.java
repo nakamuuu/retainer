@@ -12,16 +12,15 @@ public class Retainer {
     }
 
     public static <T extends FragmentActivity> void onCreate(T target) {
-        onCreate(target.getSupportFragmentManager(), target);
+        onCreate(target, target.getSupportFragmentManager(), RetainFragment.DEFAULT_TAG);
     }
 
     public static <T extends Fragment> void onCreate(T target) {
-        onCreate(target.getChildFragmentManager(), target);
+        onCreate(target, target.getChildFragmentManager(), RetainFragment.DEFAULT_TAG);
     }
 
     @SuppressWarnings("unchecked")
-    private static <T> void onCreate(FragmentManager fragmentManager, T target) {
-        final String tag = RetainFragment.getTag(target.getClass());
+    public static <T> void onCreate(T target, FragmentManager fragmentManager, String tag) {
         final Fragment fragment = fragmentManager.findFragmentByTag(tag);
         if (fragment != null) {
             final Object<T> object = ((RetainFragment<T>) fragment).getObject();
@@ -34,16 +33,15 @@ public class Retainer {
     }
 
     public static <T extends FragmentActivity> void onDestroy(T target) {
-        onDestroy(target.getSupportFragmentManager(), target);
+        onDestroy(target, target.getSupportFragmentManager(), RetainFragment.DEFAULT_TAG);
     }
 
     public static <T extends Fragment> void onDestroy(T target) {
-        onDestroy(target.getChildFragmentManager(), target);
+        onDestroy(target, target.getChildFragmentManager(), RetainFragment.DEFAULT_TAG);
     }
 
     @SuppressWarnings("unchecked")
-    private static <T> void onDestroy(FragmentManager fragmentManager, T target) {
-        final String tag = RetainFragment.getTag(target.getClass());
+    public static <T> void onDestroy(T target, FragmentManager fragmentManager, String tag) {
         final Fragment fragment = fragmentManager.findFragmentByTag(tag);
         if (fragment == null) {
             Log.w(TAG, "Could not find the fragment for preserving instance states."

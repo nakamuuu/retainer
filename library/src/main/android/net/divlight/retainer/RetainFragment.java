@@ -5,9 +5,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
 public class RetainFragment<T> extends Fragment {
-    public static String getTag(Class<?> targetClass) {
-        return targetClass.getName().toUpperCase().replaceAll("\\.", "_") + "_RETAINER";
-    }
+    public static final String DEFAULT_TAG = RetainFragment.class.getName()
+            .toUpperCase()
+            .replaceAll("\\.", "_");
 
     @Nullable
     private Object<T> object;
