@@ -28,7 +28,9 @@ public class Retainer {
                 object.restore(target);
             }
         } else {
-            fragmentManager.beginTransaction().add(new RetainFragment<T>(), tag).commit();
+            fragmentManager.beginTransaction()
+                    .add(new RetainFragment<T>(), tag)
+                    .commitAllowingStateLoss();
         }
     }
 
