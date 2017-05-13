@@ -1,24 +1,60 @@
 package net.divlight.retainer;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
 
+/**
+ * An utility class that helps retaining objects in an Activity / Fragment during configuration
+ * changes.
+ * <p>
+ * Call <code>Retainer.onCreate(this)</code> and <code>Retainer.onDestroy(this)</code> in your
+ * activity or fragment. {@link net.divlight.retainer.annotation.Retain} annotated fields will be
+ * automatically preserved by Retainer.
+ */
 public class Retainer {
     private static final String TAG = Retainer.class.getSimpleName();
 
     private Retainer() {
     }
 
+    /**
+     * To preserve {@link net.divlight.retainer.annotation.Retain} annotated fields, Bind a target
+     * to a container object(a auto-generated fragment that is called setRetainInstance(true)).
+     * <p>
+     * This method is intended to be called in {@link FragmentActivity#onCreate(Bundle)}.
+     *
+     * @param target Target activity for retaining objects.
+     */
     public static <T extends FragmentActivity> void onCreate(T target) {
         onCreate(target, target.getSupportFragmentManager(), RetainFragment.DEFAULT_TAG);
     }
 
+    /**
+     * To preserve {@link net.divlight.retainer.annotation.Retain} annotated fields, Bind a target
+     * to a container object(a auto-generated fragment that is called setRetainInstance(true)).
+     * <p>
+     * This method is intended to be called in {@link Fragment#onCreate(Bundle)}.
+     *
+     * @param target Target fragment for retaining objects.
+     */
     public static <T extends Fragment> void onCreate(T target) {
         onCreate(target, target.getChildFragmentManager(), RetainFragment.DEFAULT_TAG);
     }
 
+    /**
+     * To preserve {@link net.divlight.retainer.annotation.Retain} annotated fields, Bind a target
+     * to a container object(a auto-generated fragment that is called setRetainInstance(true)).
+     * <p>
+     * This method is intended to be called in {@link FragmentActivity#onCreate(Bundle)} or
+     * {@link Fragment#onCreate(Bundle)}.
+     *
+     * @param target          Target activity or fragment for retaining objects.
+     * @param fragmentManager FragmentManager used for committing the container fragment.
+     * @param tag             The tag name for the container fragment.
+     */
     @SuppressWarnings("unchecked")
     public static <T> void onCreate(T target, FragmentManager fragmentManager, String tag) {
         final Fragment fragment = fragmentManager.findFragmentByTag(tag);
@@ -34,14 +70,38 @@ public class Retainer {
         }
     }
 
+    /**
+     * Save {@link net.divlight.retainer.annotation.Retain} annotated fields to a container object.
+     * <p>
+     * This method is intended to be called in {@link FragmentActivity#onDestroy()}.
+     *
+     * @param target Target activity for retaining objects.
+     */
     public static <T extends FragmentActivity> void onDestroy(T target) {
         onDestroy(target, target.getSupportFragmentManager(), RetainFragment.DEFAULT_TAG);
     }
 
+    /**
+     * Save {@link net.divlight.retainer.annotation.Retain} annotated fields to a container object.
+     * <p>
+     * This method is intended to be called in {@link Fragment#onDestroy()}.
+     *
+     * @param target Target fragment for retaining objects.
+     */
     public static <T extends Fragment> void onDestroy(T target) {
         onDestroy(target, target.getChildFragmentManager(), RetainFragment.DEFAULT_TAG);
     }
 
+    /**
+     * Save {@link net.divlight.retainer.annotation.Retain} annotated fields to a container object.
+     * <p>
+     * This method is intended to be called in {@link FragmentActivity#onDestroy()} or
+     * {@link Fragment#onDestroy()}.
+     *
+     * @param target          Target activity or fragment for retaining objects.
+     * @param fragmentManager FragmentManager used for finding the container fragment.
+     * @param tag             The tag name for the container fragment.
+     */
     @SuppressWarnings("unchecked")
     public static <T> void onDestroy(T target, FragmentManager fragmentManager, String tag) {
         final Fragment fragment = fragmentManager.findFragmentByTag(tag);
