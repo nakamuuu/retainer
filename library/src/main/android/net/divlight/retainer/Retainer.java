@@ -1,6 +1,7 @@
 package net.divlight.retainer;
 
 import android.os.Bundle;
+import android.support.annotation.UiThread;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -28,6 +29,7 @@ public class Retainer {
      *
      * @param target Target activity for retaining objects.
      */
+    @UiThread
     public static <T extends FragmentActivity> void onCreate(T target) {
         onCreate(target, target.getSupportFragmentManager(), RetainFragment.DEFAULT_TAG);
     }
@@ -40,6 +42,7 @@ public class Retainer {
      *
      * @param target Target fragment for retaining objects.
      */
+    @UiThread
     public static <T extends Fragment> void onCreate(T target) {
         onCreate(target, target.getChildFragmentManager(), RetainFragment.DEFAULT_TAG);
     }
@@ -56,6 +59,7 @@ public class Retainer {
      * @param tag             The tag name for the container fragment.
      */
     @SuppressWarnings("unchecked")
+    @UiThread
     public static <T> void onCreate(T target, FragmentManager fragmentManager, String tag) {
         final Fragment fragment = fragmentManager.findFragmentByTag(tag);
         if (fragment != null) {
@@ -77,6 +81,7 @@ public class Retainer {
      *
      * @param target Target activity for retaining objects.
      */
+    @UiThread
     public static <T extends FragmentActivity> void onDestroy(T target) {
         onDestroy(target, target.getSupportFragmentManager(), RetainFragment.DEFAULT_TAG);
     }
@@ -88,6 +93,7 @@ public class Retainer {
      *
      * @param target Target fragment for retaining objects.
      */
+    @UiThread
     public static <T extends Fragment> void onDestroy(T target) {
         onDestroy(target, target.getChildFragmentManager(), RetainFragment.DEFAULT_TAG);
     }
@@ -103,6 +109,7 @@ public class Retainer {
      * @param tag             The tag name for the container fragment.
      */
     @SuppressWarnings("unchecked")
+    @UiThread
     public static <T> void onDestroy(T target, FragmentManager fragmentManager, String tag) {
         final Fragment fragment = fragmentManager.findFragmentByTag(tag);
         if (fragment == null) {
