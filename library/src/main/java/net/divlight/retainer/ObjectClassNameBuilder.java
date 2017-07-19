@@ -1,6 +1,7 @@
 package net.divlight.retainer;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ObjectClassNameBuilder {
@@ -20,6 +21,7 @@ public class ObjectClassNameBuilder {
 
     public String build() {
         String name = "";
+        Collections.reverse(enclosingClassSimpleNames);
         for (String enclosingClassSimpleName : enclosingClassSimpleNames) {
             name += enclosingClassSimpleName + "$";
         }
