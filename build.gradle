@@ -27,6 +27,7 @@ ext {
     buildToolsVersion = "25.0.2"
     minSdkVersion = 15
     targetSdkVersion = 25
-
     supportLibraryVersion = "25.4.0"
+
+    jUnitVersion = "4.12"
 }

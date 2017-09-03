@@ -32,5 +32,5 @@ android {
 
 dependencies {
     compile "com.android.support:support-fragment:${rootProject.ext.supportLibraryVersion}"
-    testCompile "junit:junit:4.12"
+    testCompile "junit:junit:${rootProject.ext.jUnitVersion}"
 }
