@@ -22,6 +22,8 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class MainActivityTest {
+    private static final long WAIT_FOR_WINDOW_UPDATE_TIMEOUT = 5000;
+
     private Context context;
     private UiDevice device;
 
@@ -40,49 +42,60 @@ public class MainActivityTest {
         onView(withId(R.id.text_view)).check(matches(withText(context.getString(R.string.value_format, 1))));
 
         device.setOrientationLeft();
-        device.waitForWindowUpdate(null, 2000);
+        device.waitForWindowUpdate(null, WAIT_FOR_WINDOW_UPDATE_TIMEOUT);
+        device.waitForIdle();
         onView(withId(R.id.text_view)).check(matches(withText(context.getString(R.string.value_format, 2))));
 
         device.setOrientationNatural();
-        device.waitForWindowUpdate(null, 2000);
+        device.waitForWindowUpdate(null, WAIT_FOR_WINDOW_UPDATE_TIMEOUT);
+        device.waitForIdle();
         onView(withId(R.id.text_view)).check(matches(withText(context.getString(R.string.value_format, 3))));
 
         device.setOrientationRight();
-        device.waitForWindowUpdate(null, 2000);
+        device.waitForWindowUpdate(null, WAIT_FOR_WINDOW_UPDATE_TIMEOUT);
+        device.waitForIdle();
         onView(withId(R.id.text_view)).check(matches(withText(context.getString(R.string.value_format, 4))));
 
         device.setOrientationNatural();
-        device.waitForWindowUpdate(null, 2000);
+        device.waitForWindowUpdate(null, WAIT_FOR_WINDOW_UPDATE_TIMEOUT);
+        device.waitForIdle();
         onView(withId(R.id.text_view)).check(matches(withText(context.getString(R.string.value_format, 5))));
     }
 
     @Test
     public void testRetainByDialogFragment() throws RemoteException {
         onView(withId(R.id.button)).perform(click());
-        device.waitForWindowUpdate(null, 2000);
+        device.waitForWindowUpdate(null, WAIT_FOR_WINDOW_UPDATE_TIMEOUT);
+        device.waitForIdle();
         onView(withId(android.R.id.message)).check(matches(withText(context.getString(R.string.value_format, 1))));
 
         device.setOrientationLeft();
-        device.waitForWindowUpdate(null, 2000);
+        device.waitForWindowUpdate(null, WAIT_FOR_WINDOW_UPDATE_TIMEOUT);
+        device.waitForIdle();
         onView(withId(android.R.id.message)).check(matches(withText(context.getString(R.string.value_format, 2))));
 
         device.setOrientationNatural();
-        device.waitForWindowUpdate(null, 2000);
+        device.waitForWindowUpdate(null, WAIT_FOR_WINDOW_UPDATE_TIMEOUT);
+        device.waitForIdle();
         onView(withId(android.R.id.message)).check(matches(withText(context.getString(R.string.value_format, 3))));
 
         device.setOrientationRight();
-        device.waitForWindowUpdate(null, 2000);
+        device.waitForWindowUpdate(null, WAIT_FOR_WINDOW_UPDATE_TIMEOUT);
+        device.waitForIdle();
         onView(withId(android.R.id.message)).check(matches(withText(context.getString(R.string.value_format, 4))));
 
         device.setOrientationNatural();
-        device.waitForWindowUpdate(null, 2000);
+        device.waitForWindowUpdate(null, WAIT_FOR_WINDOW_UPDATE_TIMEOUT);
+        device.waitForIdle();
         onView(withId(android.R.id.message)).check(matches(withText(context.getString(R.string.value_format, 5))));
 
         device.pressBack();
-        device.waitForWindowUpdate(null, 2000);
+        device.waitForWindowUpdate(null, WAIT_FOR_WINDOW_UPDATE_TIMEOUT);
+        device.waitForIdle();
 
         onView(withId(R.id.button)).perform(click());
-        device.waitForWindowUpdate(null, 2000);
+        device.waitForWindowUpdate(null, WAIT_FOR_WINDOW_UPDATE_TIMEOUT);
+        device.waitForIdle();
         onView(withId(android.R.id.message)).check(matches(withText(context.getString(R.string.value_format, 1))));
     }
 }
