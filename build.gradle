@@ -30,4 +30,7 @@ ext {
     supportLibraryVersion = "25.4.0"
 
     jUnitVersion = "4.12"
+    testingSupportLibraryVersion = "0.5"
+    espressoVersion = "2.2.2"
+    uiAutomatorVersion = "2.1.2"
 }

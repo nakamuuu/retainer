@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Retainer Sample</string>
+    <string name="value_format">Retained value : %1$d</string>
     <string name="button_label">SHOW DialogFragment</string>
 </resources>

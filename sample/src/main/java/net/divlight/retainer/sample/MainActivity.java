@@ -14,8 +14,6 @@ import android.widget.TextView;
 import net.divlight.retainer.Retainer;
 import net.divlight.retainer.annotation.Retain;
 
-import java.util.Locale;
-
 public class MainActivity extends AppCompatActivity {
     @Retain
     int retainedValue;
@@ -29,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         retainedValue++;
 
         final TextView textView = (TextView) findViewById(R.id.text_view);
-        textView.setText(String.format(Locale.ENGLISH, "Retained value : %d", retainedValue));
+        textView.setText(getString(R.string.value_format, retainedValue));
 
         final Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -70,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             return new AlertDialog.Builder(getContext())
-                    .setMessage(String.format(Locale.ENGLISH, "Retained value : %d", retainedValue))
+                    .setMessage(getString(R.string.value_format, retainedValue))
                     .setPositiveButton(android.R.string.ok, null)
                     .create();
         }
