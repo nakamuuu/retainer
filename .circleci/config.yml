@@ -29,7 +29,7 @@ jobs:
           command: ./gradlew test
       - run:
           name: Run Instrumented Tests
-          command: ./gradlew connectedAndroidTest
+          command: ./gradlew connectedAndroidTest -PdisablePreDex
       - store_test_results:
           path: library/build/test-results
       - store_test_results:
