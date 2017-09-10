@@ -6,24 +6,33 @@ jobs:
       - image: circleci/android:api-25-alpha
     environment:
       JVM_OPTS: -Xmx3200m
+      GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError"'
     timezone: Asia/Tokyo
     steps:
       - checkout
       - run:
-          name: Accept License Agreement of Android SDK Tools
-          command: |
-            echo y | android -s update sdk -u -a -t "tools"
-            mkdir -p "$ANDROID_HOME"/licenses
-            echo "8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME"/licenses/android-sdk-license
-            $ANDROID_HOME/tools/bin/sdkmanager "platform-tools" "extras;android;m2repository"
+          name: Setup Emulator
+          command: sdkmanager "system-images;android-22;default;armeabi-v7a" && echo "no" | avdmanager create avd -n test -k "system-images;android-22;default;armeabi-v7a"
+      - run:
+          name: Launch Emulator
+          command: export LD_LIBRARY_PATH=${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib && emulator64-arm -avd test -noaudio -no-boot-anim -no-window -accel on
+          background: true
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
       - run:
-          name: Run Tests
-          command: ./gradlew lint test
+          name: Run Lint
+          command: ./gradlew lint
+      - run:
+          name: Run Unit Tests
+          command: ./gradlew test
+      - run:
+          name: Run Instrumented Tests
+          command: ./gradlew connectedAndroidTest
       - store_test_results:
           path: library/build/test-results
+      - store_test_results:
+          path: processor/build/test-results
       - store_test_results:
           path: processor/build/test-results
       - store_artifacts:
@@ -32,3 +41,6 @@ jobs:
       - store_artifacts:
           path: processor/build/reports
           destination: reports/processor
+      - store_artifacts:
+          path: sample/build/reports
+          destination: reports/sample
