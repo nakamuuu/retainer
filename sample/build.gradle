@@ -22,10 +22,10 @@ android {
 }
 
 dependencies {
-    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibraryVersion}"
     implementation project(':library')
     annotationProcessor project(':processor')
-    androidTestImplementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibraryVersion}"
+    implementation "android.arch.lifecycle:runtime:${rootProject.ext.lifecycleAwareComponentsRuntimeVersion}"
+    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibraryVersion}"
     androidTestImplementation "com.android.support.test:runner:${rootProject.ext.testingSupportLibraryVersion}"
     androidTestImplementation "com.android.support.test:rules:${rootProject.ext.testingSupportLibraryVersion}"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:${rootProject.ext.espressoVersion}"

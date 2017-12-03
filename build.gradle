@@ -29,6 +29,7 @@ ext {
     minSdkVersion = 15
     targetSdkVersion = 25
     architectureComponentsVersion = "1.0.0"
+    lifecycleAwareComponentsRuntimeVersion = "1.0.3"
     supportLibraryVersion = "26.1.0"
 
     jUnitVersion = "4.12"
