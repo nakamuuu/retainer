@@ -5,7 +5,7 @@
 Retainer is an Android library that helps you retain objects in an Activity / Fragment during configuration changes.
 
 It auto-generates container objects by using annotation processing, and this objects will be internally preserved in a Fragment.
-`setRetainInstance(true)` is called for this fragment in its `onCreate()`, so that stateful objects are preserved during configuration changes.
+`setRetainInstance(true)` is called for this fragment, so that stateful objects are preserved during configuration changes.
 
 If you need more information about the handling of configuration changes, check the following document.
 
@@ -17,7 +17,7 @@ Retainer also provides you static methods that bundle a procedure related to Fra
 So you can simply retain objects by following the steps and examples below.
 
 1. Add `@Retain` to a field you want to retain.
-1. Call `Retainer.onCreate(this)` and `Retainer.onDestroy(this)` in your activity or fragment.
+1. Call `Retainer.bind(this)` in your activity or fragment.
 
 **IMPORTANT**: You should never add `@Retain` to an object that is tied to the activity context, such as a Drawable, an Adapter, or a View.
 If you do, it will cause serious memory leaks.
@@ -38,13 +38,7 @@ public class ExampleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Retainer.onCreate(this);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Retainer.onDestroy(this);
+        Retainer.bind(this);
     }
 }
 ```
@@ -65,13 +59,7 @@ public class ExampleFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Retainer.onCreate(this);
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Retainer.onDestroy(this);
+        Retainer.bind(this);
     }
 }
 ```
@@ -94,8 +82,8 @@ allprojects {
 Add the dependency in your module's build.gradle:
 
 ```groovy
-compile 'com.github.nakamuuu.retainer:library:{{latest_version}}'
-annotationProcessor 'com.github.nakamuuu.retainer:processor:{{latest_version}}'
+compile 'com.github.nakamuuu.retainer:library:{latest_version}'
+annotationProcessor 'com.github.nakamuuu.retainer:processor:{latest_version}'
 ```
 
 ## Requirements
