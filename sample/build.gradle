@@ -22,12 +22,12 @@ android {
 }
 
 dependencies {
-    compile "com.android.support:appcompat-v7:${rootProject.ext.supportLibraryVersion}"
-    compile project(':library')
+    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibraryVersion}"
+    implementation project(':library')
     annotationProcessor project(':processor')
-    androidTestCompile "com.android.support:appcompat-v7:${rootProject.ext.supportLibraryVersion}"
-    androidTestCompile "com.android.support.test:runner:${rootProject.ext.testingSupportLibraryVersion}"
-    androidTestCompile "com.android.support.test:rules:${rootProject.ext.testingSupportLibraryVersion}"
-    androidTestCompile "com.android.support.test.espresso:espresso-core:${rootProject.ext.espressoVersion}"
-    androidTestCompile "com.android.support.test.uiautomator:uiautomator-v18:${rootProject.ext.uiAutomatorVersion}"
+    androidTestImplementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibraryVersion}"
+    androidTestImplementation "com.android.support.test:runner:${rootProject.ext.testingSupportLibraryVersion}"
+    androidTestImplementation "com.android.support.test:rules:${rootProject.ext.testingSupportLibraryVersion}"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:${rootProject.ext.espressoVersion}"
+    androidTestImplementation "com.android.support.test.uiautomator:uiautomator-v18:${rootProject.ext.uiAutomatorVersion}"
 }

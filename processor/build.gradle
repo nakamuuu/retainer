@@ -19,9 +19,9 @@ sourceSets {
 }
 
 dependencies {
-    compile "com.google.auto.service:auto-service:1.0-rc2"
-    compile "com.squareup:javapoet:1.8.0"
-    testCompile files(Jvm.current().getToolsJar())
-    testCompile "junit:junit:${rootProject.ext.jUnitVersion}"
-    testCompile "com.google.testing.compile:compile-testing:0.8"
+    implementation "com.google.auto.service:auto-service:1.0-rc2"
+    implementation "com.squareup:javapoet:1.8.0"
+    testImplementation files(Jvm.current().getToolsJar())
+    testImplementation "junit:junit:${rootProject.ext.jUnitVersion}"
+    testImplementation "com.google.testing.compile:compile-testing:0.8"
 }
