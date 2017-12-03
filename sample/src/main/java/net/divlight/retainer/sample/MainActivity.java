@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Retainer.onCreate(this);
+        Retainer.bind(this);
 
         retainedValue++;
 
@@ -38,12 +38,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Retainer.onDestroy(this);
-    }
-
     public static class MainDialogFragment extends DialogFragment {
         public static final String TAG = MainDialogFragment.class.getSimpleName();
 
@@ -53,15 +47,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onCreate(@Nullable Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            Retainer.onCreate(this);
+            Retainer.bind(this);
 
             retainedValue++;
-        }
-
-        @Override
-        public void onDestroy() {
-            super.onDestroy();
-            Retainer.onDestroy(this);
         }
 
         @NonNull
