@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
+import java.util.Locale;
+
 public class RetainFragment<T> extends Fragment {
     public static final String DEFAULT_TAG = RetainFragment.class.getName()
-            .toUpperCase()
+            .toUpperCase(Locale.ENGLISH)
             .replaceAll("\\.", "_");
 
     @Nullable
