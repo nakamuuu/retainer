@@ -48,3 +48,17 @@ jobs:
       - store_artifacts:
           path: sample/build/reports
           destination: reports/sample
+      - run:
+          name: Assemble AARs / JARs
+          command: |
+            ./gradlew library:assemble
+            ./gradlew processor:assemble
+      - store_artifacts:
+          path: library/build/outputs/aar
+          destination: artifacts/library
+      - store_artifacts:
+          path: library/build/libs
+          destination: artifacts/library
+      - store_artifacts:
+          path: processor/build/libs
+          destination: artifacts/processor
