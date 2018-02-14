@@ -20,11 +20,12 @@ public class Retainer {
 
     /**
      * To preserve {@link net.divlight.retainer.annotation.Retain} annotated fields, Bind a target
-     * to a container object(a auto-generated fragment that is called setRetainInstance(true)). If
+     * to a container object (a auto-generated fragment that is called setRetainInstance(true)). If
      * the fields is already preserved by a container object, it will be restored.
      * <p>
      * This method is intended to be called in {@link FragmentActivity#onCreate(Bundle)}.
      *
+     * @param <T>    The class of target activity.
      * @param target Target activity for retaining objects.
      */
     @UiThread
@@ -34,11 +35,12 @@ public class Retainer {
 
     /**
      * To preserve {@link net.divlight.retainer.annotation.Retain} annotated fields, Bind a target
-     * to a container object(a auto-generated fragment that is called setRetainInstance(true)). If
+     * to a container object (a auto-generated fragment that is called setRetainInstance(true)). If
      * the fields is already preserved by a container object, it will be restored.
      * <p>
      * This method is intended to be called in {@link Fragment#onCreate(Bundle)}.
      *
+     * @param <T>    The class of target fragment.
      * @param target Target fragment for retaining objects.
      */
     @UiThread
@@ -48,12 +50,13 @@ public class Retainer {
 
     /**
      * To preserve {@link net.divlight.retainer.annotation.Retain} annotated fields, Bind a target
-     * to a container object(a auto-generated fragment that is called setRetainInstance(true)). If
+     * to a container object (a auto-generated fragment that is called setRetainInstance(true)). If
      * the fields is already preserved by a container object, it will be restored.
      * <p>
      * This method is intended to be called in {@link FragmentActivity#onCreate(Bundle)} or
      * {@link Fragment#onCreate(Bundle)}.
      *
+     * @param <T>             The class of target activity or fragment.
      * @param target          Target activity or fragment for retaining objects.
      * @param fragmentManager FragmentManager used for committing the container fragment.
      * @param tag             The tag name for the container fragment.
