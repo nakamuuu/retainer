@@ -20,11 +20,11 @@ public class ObjectClassNameBuilder {
     }
 
     public String build() {
-        String name = "";
+        final StringBuilder nameBuilder = new StringBuilder();
         Collections.reverse(enclosingClassSimpleNames);
         for (String enclosingClassSimpleName : enclosingClassSimpleNames) {
-            name += enclosingClassSimpleName + "$";
+            nameBuilder.append(enclosingClassSimpleName).append("$");
         }
-        return name + targetClassSimpleName + RETAINER_CLASS_SUFFIX;
+        return nameBuilder + targetClassSimpleName + RETAINER_CLASS_SUFFIX;
     }
 }
