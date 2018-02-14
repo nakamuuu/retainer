@@ -11,6 +11,10 @@ If you need more information about the handling of configuration changes, check 
 
 https://developer.android.com/guide/topics/resources/runtime-changes.html
 
+**NOTE**: When your activity or application process have been destroyed, Fragment in which `setRetainInstance(true)` is called is also destroyed. Therefore, this approach doesn't replace the method using onSavedInstanceState().
+
+![Lifetime of objects](https://user-images.githubusercontent.com/12740720/36219838-04da1f64-11fc-11e8-8848-6da515ac5f80.jpeg)
+
 ## How to use
 
 Retainer also provides you static methods that bundle a procedure related to Fragment's lifecycle.
@@ -82,7 +86,7 @@ allprojects {
 Add the dependency in your module's build.gradle:
 
 ```groovy
-compile 'com.github.nakamuuu.retainer:library:{latest_version}'
+implementation 'com.github.nakamuuu.retainer:library:{latest_version}'
 annotationProcessor 'com.github.nakamuuu.retainer:processor:{latest_version}'
 ```
 
