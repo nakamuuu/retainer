@@ -2,6 +2,7 @@ import org.gradle.internal.jvm.Jvm
 
 apply plugin: 'java'
 apply plugin: 'maven'
+apply from: '../artifacts.gradle'
 
 group = 'com.github.nakamuuu'
 
