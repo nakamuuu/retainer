@@ -11,7 +11,7 @@ If you need more information about the handling of configuration changes, check 
 
 https://developer.android.com/guide/topics/resources/runtime-changes.html
 
-**NOTE**: When your activity or application process have been destroyed, Fragment in which `setRetainInstance(true)` is called is also destroyed. Therefore, this approach doesn't replace the method using onSavedInstanceState().
+**NOTE**: When your activity or application process have been destroyed, Fragment in which `setRetainInstance(true)` is called is also destroyed. Therefore, this approach doesn't replace the method using onSaveInstanceState().
 
 ![Lifetime of objects](https://user-images.githubusercontent.com/12740720/36219838-04da1f64-11fc-11e8-8848-6da515ac5f80.jpeg)
 
