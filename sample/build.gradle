@@ -10,7 +10,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -24,10 +24,10 @@ android {
 dependencies {
     implementation project(':library')
     annotationProcessor project(':processor')
-    implementation "android.arch.lifecycle:runtime:${rootProject.ext.lifecycleAwareComponentsRuntimeVersion}"
-    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibraryVersion}"
-    androidTestImplementation "com.android.support.test:runner:${rootProject.ext.testingSupportLibraryVersion}"
-    androidTestImplementation "com.android.support.test:rules:${rootProject.ext.testingSupportLibraryVersion}"
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:${rootProject.ext.espressoVersion}"
-    androidTestImplementation "com.android.support.test.uiautomator:uiautomator-v18:${rootProject.ext.uiAutomatorVersion}"
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime:2.0.0'
+    androidTestImplementation 'androidx.test:runner:1.1.0'
+    androidTestImplementation 'androidx.test:rules:1.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
 }

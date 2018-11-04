@@ -28,12 +28,4 @@ ext {
     buildToolsVersion = "28.0.3"
     minSdkVersion = 15
     targetSdkVersion = 28
-    architectureComponentsVersion = "1.0.0"
-    lifecycleAwareComponentsRuntimeVersion = "1.0.3"
-    supportLibraryVersion = "28.0.0"
-
-    jUnitVersion = "4.12"
-    testingSupportLibraryVersion = "0.5"
-    espressoVersion = "2.2.2"
-    uiAutomatorVersion = "2.1.2"
 }

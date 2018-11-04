@@ -1,11 +1,12 @@
 package net.divlight.retainer;
 
-import android.arch.lifecycle.LifecycleOwner;
 import android.os.Bundle;
-import android.support.annotation.UiThread;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
+
+import androidx.annotation.UiThread;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.LifecycleOwner;
 
 /**
  * An utility class that helps retaining objects in an Activity / Fragment during configuration

@@ -6,6 +6,6 @@
     <uses-sdk
         android:minSdkVersion="18"
         android:targetSdkVersion="25"
-        tools:overrideLibrary="android.support.test.uiautomator.v18" />
+        tools:overrideLibrary="android_libs.ub_uiautomator" />
 
 </manifest>
