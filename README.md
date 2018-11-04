@@ -28,7 +28,7 @@ If you do, it will cause serious memory leaks.
 
 ### Activity
 
-Supports only `android.support.v4.app.FragmentActivity` or its subclasses.
+Supports only `androidx.fragment.app.FragmentActivity` or its subclasses.
 
 ```java
 import net.divlight.retainer.Retainer;
@@ -49,7 +49,7 @@ public class ExampleActivity extends AppCompatActivity {
 
 ### Fragment
 
-Supports only `android.support.v4.app.Fragment` or its subclasses.
+Supports only `androidx.fragment.app.Fragment` or its subclasses.
 
 ```java
 import net.divlight.retainer.Retainer;
@@ -86,8 +86,8 @@ allprojects {
 Add the dependency in your module's build.gradle:
 
 ```groovy
-implementation 'com.github.nakamuuu.retainer:library:{latest_version}'
-annotationProcessor 'com.github.nakamuuu.retainer:processor:{latest_version}'
+implementation "com.github.nakamuuu.retainer:library:${latest_version}"
+annotationProcessor "com.github.nakamuuu.retainer:processor:${latest_version}"
 ```
 
 ## Requirements
