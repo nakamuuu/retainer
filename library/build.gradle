@@ -37,8 +37,8 @@ android {
 }
 
 dependencies {
-    implementation "android.arch.lifecycle:runtime:${rootProject.ext.lifecycleAwareComponentsRuntimeVersion}"
-    annotationProcessor "android.arch.lifecycle:compiler:${rootProject.ext.architectureComponentsVersion}"
-    implementation "com.android.support:support-fragment:${rootProject.ext.supportLibraryVersion}"
-    testImplementation "junit:junit:${rootProject.ext.jUnitVersion}"
+    implementation 'androidx.fragment:fragment:1.0.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime:2.0.0'
+    annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.0.0'
+    testImplementation 'junit:junit:4.12'
 }
